@@ -1,8 +1,10 @@
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
+import requests
 
 from bot.dispatcher import dp
+from config import SCREENSHOT_SERVICE_URL
 
 
 class CodeState(StatesGroup):
@@ -24,4 +26,14 @@ async def handle_hl(message: types.Message):
 async def handle_hl_response(message: types.Message, state: FSMContext):
     await state.finish()
 
-    await message.reply("Ответ")
+    params = { "code": message.text }
+    response = requests.post(SCREENSHOT_SERVICE_URL + "/generate-image", json=params)
+
+    if response.status_code != 200:
+        raise Exception("Error when requesting image:\n" + response.text)
+
+    response_body = response.json()
+    media = types.MediaGroup()
+    media.attach_photo(types.InputFile(response_body['path']))
+
+    await message.reply_media_group(media)

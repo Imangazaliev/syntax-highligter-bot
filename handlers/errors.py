@@ -1,3 +1,5 @@
+import logging
+
 from aiogram import types
 from aiogram.utils import exceptions
 
@@ -13,6 +15,8 @@ async def handle_bot_blocked_error(update: types.Update, exception: Exception):
     for cls in ignore_exception_classes:
         if isinstance(exception, cls):
             return
+
+    logging.error(str(exception))
 
     await update.message.reply("Ошибка при обработке запроса.")
 

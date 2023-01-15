@@ -1,0 +1,13 @@
+{
+    "dependencies": {
+        "express": "^4.18.2",
+        "express-async-errors": "^3.1.1",
+        "express-winston": "^4.2.0",
+        "highlight.js": "^11.7.0",
+        "nanoid": "^3.3.4",
+        "nunjucks": "^3.2.3",
+        "puppeteer": "^19.5.1",
+        "serve-static": "^1.15.0",
+        "winston": "^3.8.2"
+    }
+}

@@ -8,6 +8,7 @@ authors = ["Muhammad Imangazaliev <imangazaliev.md@gmail.com>"]
 python = "^3.8"
 python-dotenv = "^0.21.0"
 aiogram = "^2.24"
+requests = "^2.28.2"
 
 [tool.poetry.dev-dependencies]
 
